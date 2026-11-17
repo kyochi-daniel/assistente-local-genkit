@@ -1,0 +1,31 @@
+1
+00:00:00,000 --> 00:00:05,019
+01 · Assistente local: conversa limpa e dados fictícios
+
+2
+00:00:05,019 --> 00:00:11,626
+02 · Pedido em linguagem natural: cliente e contrato no mesmo lote
+
+3
+00:00:11,626 --> 00:00:24,434
+03 · Revisão humana: nada foi salvo antes da confirmação
+
+4
+00:00:24,434 --> 00:00:32,292
+04 · Edição por formulário: o cadastro também funciona sem IA
+
+5
+00:00:32,292 --> 00:00:41,073
+05 · Exclusão com impacto: cliente e contrato serão movidos juntos
+
+6
+00:00:41,073 --> 00:00:47,991
+06 · Restauração: os vínculos do lote são recuperados com confirmação
+
+7
+00:00:47,991 --> 00:00:52,680
+07 · Catálogo real: modelos, compatibilidade e estimativa de custos
+
+8
+00:00:52,680 --> 00:00:59,040
+08 · Dados no navegador; inferência remota via Genkit e OpenRouter

@@ -1,0 +1,1928 @@
+@use 'variables'
+@use 'animations'
+
+body
+  min-width: 0
+  font-family: var(--font-body)
+  font-size: var(--f3)
+  color: var(--foreground)
+  line-height: 1.5
+  background: var(--background)
+
+button, input, textarea, select
+  font-family: inherit
+
+button, a, input, textarea, select, [tabindex]
+  &:focus-visible
+    outline: calc(var(--line) * 2) solid var(--ring)
+    outline-offset: var(--space1)
+
+button:not(:disabled), select
+  cursor: pointer
+
+button:disabled
+  cursor: not-allowed
+
+svg
+  width: var(--icon)
+  height: var(--icon)
+
+h1, h2, h3
+  font-family: var(--font-display)
+  line-height: 1.25
+
+h1
+  font-size: var(--f7)
+
+h2
+  font-size: var(--f5)
+
+h3
+  font-size: var(--f4)
+
+.muted, .small, .optional
+  color: var(--muted-foreground)
+
+.small, .optional
+  font-size: var(--f1)
+
+.eyebrow
+  margin: 0 0 var(--space2) 0
+  font-size: var(--f0)
+  color: var(--primary)
+
+.visually-hidden, .skip-link:not(:focus)
+  position: absolute
+  width: var(--line)
+  height: var(--line)
+  overflow: hidden
+  clip-path: inset(50%)
+  white-space: nowrap
+
+.skip-link:focus
+  position: fixed
+  top: var(--space4)
+  left: var(--space4)
+  z-index: 20
+  padding: var(--space3) var(--space4) var(--space3) var(--space4)
+  color: var(--primary-foreground)
+  background: var(--primary)
+
+.brand
+  display: flex
+  width: fit-content
+  align-items: center
+  gap: var(--space2)
+  font-size: var(--f6)
+  color: var(--foreground)
+
+.brand-symbol
+  display: flex
+  width: var(--avatar)
+  height: var(--avatar)
+  align-items: center
+  justify-content: center
+  font-family: var(--font-display)
+  font-size: var(--f6)
+  color: var(--primary-foreground)
+  background: var(--primary)
+  border-radius: var(--radius) var(--radius) var(--radius) var(--radius)
+
+.brand-dot, .status-dot
+  display: inline-block
+  width: var(--space2)
+  height: var(--space2)
+  background: var(--success)
+  border-radius: 50% 50% 50% 50%
+
+.brand-dot
+  width: var(--space1)
+  height: var(--space1)
+  margin: var(--space3) 0 0 0
+  background: var(--primary)
+
+.workspace-shell
+  display: flex
+  min-height: 100dvh
+
+.sidebar
+  display: flex
+  position: fixed
+  top: 0
+  bottom: 0
+  left: 0
+  width: var(--sidebar)
+  padding: var(--space7) var(--space5) var(--space5) var(--space5)
+  flex-direction: column
+  background: var(--card)
+  border-right: var(--line) solid var(--border)
+
+.navigation-label
+  margin: var(--space10) 0 var(--space3) var(--space3)
+  font-size: var(--f0)
+  color: var(--muted-foreground)
+
+.navigation
+  display: flex
+  flex-direction: column
+  gap: var(--space2)
+
+  a
+    display: flex
+    min-height: var(--field)
+    padding: var(--space3) var(--space3) var(--space3) var(--space3)
+    align-items: center
+    gap: var(--space3)
+    color: var(--muted-foreground)
+    border-radius: var(--radius) var(--radius) var(--radius) var(--radius)
+
+    &:hover
+      color: var(--foreground)
+      background: var(--muted)
+
+    &.router-link-active
+      color: var(--primary)
+      background: var(--accent)
+
+.navigation-arrow, .navigation-count
+  margin: 0 0 0 auto
+
+.navigation-count
+  min-width: var(--space6)
+  font-size: var(--f1)
+  text-align: center
+
+.sidebar-bottom
+  margin: auto 0 0 0
+
+.local-note, .profile
+  display: flex
+  padding: var(--space4) 0 var(--space4) 0
+  align-items: center
+  gap: var(--space3)
+  font-size: var(--f2)
+
+  small
+    display: block
+    margin: var(--space1) 0 0 0
+    font-size: var(--f0)
+    color: var(--muted-foreground)
+
+  > svg, > button
+    margin: 0 0 0 auto
+
+.local-note
+  border-bottom: var(--line) solid var(--border)
+
+.avatar
+  display: flex
+  width: var(--avatar)
+  height: var(--avatar)
+  align-items: center
+  justify-content: center
+  font-size: var(--f1)
+  color: var(--secondary-foreground)
+  background: var(--secondary)
+  border-radius: 50% 50% 50% 50%
+
+.workspace-body
+  display: flex
+  width: calc(100% - var(--sidebar))
+  min-width: 0
+  margin: 0 0 0 var(--sidebar)
+  flex-direction: column
+
+.workspace-topbar
+  display: flex
+  min-height: var(--topbar)
+  padding: var(--space4) var(--space7) var(--space4) var(--space7)
+  align-items: center
+  justify-content: space-between
+  color: var(--muted-foreground)
+  background: var(--card)
+  border-bottom: var(--line) solid var(--border)
+
+  > span, > div, .local-indicator
+    display: flex
+    align-items: center
+    gap: var(--space3)
+
+  > span svg
+    width: var(--space3)
+    height: var(--space3)
+
+  .chat-toggle
+    display: none
+
+.local-indicator
+  font-size: var(--f1)
+
+.workspace-content
+  display: flex
+  width: 100%
+  min-height: calc(100dvh - var(--topbar) - var(--space9))
+  align-items: stretch
+
+.page-content
+  position: relative
+  width: 100%
+  min-width: 0
+  padding: var(--space7) var(--space7) var(--space7) var(--space7)
+
+.assistant-popover
+  --chat: 46rem
+  --chat-height: 48.75rem
+  --chat-surface: #eeeef0
+  --chat-band: #f7f7f8
+  --chat-white: #ffffff
+  --chat-ink: #003c33
+  --chat-muted: #5c7069
+  --chat-green: #16b476
+  --chat-halo: #d9efdf
+  --chat-line: #ffffffb8
+  --chat-chip-shadow: 0 2px 3px #173c3312
+  --chat-panel-shadow: 0 8px 32px #173c331a
+  --chat-radius: 1.75rem
+  --chat-title: 1.25rem
+  --chat-orb: 7.5rem
+  --chat-composer-input: 3.625rem
+  --chat-toolbar: 3.5rem
+  --primary: var(--chat-ink)
+  --primary-foreground: var(--chat-white)
+  --foreground: var(--chat-ink)
+  --muted-foreground: var(--chat-muted)
+  --accent: var(--chat-halo)
+  --accent-foreground: var(--chat-ink)
+  --muted: var(--chat-band)
+  --card: var(--chat-white)
+  --ring: var(--chat-green)
+  position: fixed
+  right: max(var(--space6), env(safe-area-inset-right))
+  bottom: max(var(--space6), env(safe-area-inset-bottom))
+  z-index: var(--chat-layer)
+  width: var(--chat)
+  height: var(--chat-height)
+  max-width: calc(100% - var(--space9))
+  max-height: calc(100dvh - var(--space9))
+  overflow: hidden
+  background: var(--chat-surface)
+  border: var(--space1) solid var(--chat-line)
+  border-radius: var(--chat-radius) var(--chat-radius) var(--chat-radius) var(--chat-radius)
+  box-shadow: var(--chat-panel-shadow)
+
+.chat-launcher
+  position: fixed
+  right: max(var(--space6), env(safe-area-inset-right))
+  bottom: max(var(--space6), env(safe-area-inset-bottom))
+  z-index: var(--chat-layer)
+  width: var(--launcher)
+  height: var(--launcher)
+  border-radius: 50% 50% 50% 50%
+  box-shadow: var(--shadow-popover)
+
+.page-navigation
+  display: flex
+  position: absolute
+  inset: 0
+  z-index: 1
+  padding: var(--space7) var(--space7) var(--space7) var(--space7)
+  flex-direction: column
+  gap: var(--space6)
+  color: var(--primary)
+  background: var(--navigation-overlay)
+  pointer-events: none
+
+.page-skeleton
+  display: flex
+  padding: var(--space6) var(--space6) var(--space6) var(--space6)
+  flex-direction: column
+  gap: var(--space4)
+  background: var(--card)
+  border: var(--line) solid var(--border)
+  border-radius: var(--radius) var(--radius) var(--radius) var(--radius)
+
+  span
+    display: block
+    width: 100%
+    height: var(--space4)
+    background: var(--muted)
+    border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) var(--radius-sm)
+
+    &:last-child
+      width: 60%
+
+.workspace-footer
+  display: flex
+  min-height: var(--space9)
+  padding: var(--space3) var(--space7) var(--space3) var(--space7)
+  justify-content: space-between
+  gap: var(--space3)
+  font-size: var(--f0)
+  color: var(--muted-foreground)
+  border-top: var(--line) solid var(--border)
+
+.page-header
+  display: flex
+  margin: 0 0 var(--space7) 0
+  align-items: center
+  justify-content: space-between
+  gap: var(--space5)
+
+  h1
+    margin: 0 0 var(--space2) 0
+
+  p:not(.eyebrow)
+    color: var(--muted-foreground)
+
+.heading-count
+  display: inline-flex
+  margin: 0 0 0 var(--space2)
+  padding: var(--space1) var(--space2) var(--space1) var(--space2)
+  font-size: var(--f3)
+  color: var(--muted-foreground)
+  vertical-align: middle
+  background: var(--secondary)
+  border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) var(--radius-sm)
+
+.back-link
+  display: flex
+  width: fit-content
+  margin: 0 0 var(--space4) 0
+  align-items: center
+  gap: var(--space2)
+  font-size: var(--f2)
+  color: var(--muted-foreground)
+
+.list-card, .record-form
+  overflow: hidden
+  background: var(--card)
+  border: var(--line) solid var(--border)
+  border-radius: var(--radius) var(--radius) var(--radius) var(--radius)
+  box-shadow: var(--shadow)
+
+.list-header
+  display: flex
+  padding: var(--space5) var(--space6) var(--space5) var(--space6)
+  align-items: center
+  justify-content: space-between
+  gap: var(--space3)
+  border-bottom: var(--line) solid var(--border)
+
+  h2
+    font-size: var(--f3)
+
+  > span
+    font-size: var(--f1)
+    color: var(--muted-foreground)
+
+.empty-state
+  display: flex
+  padding: var(--space10) var(--space6) var(--space10) var(--space6)
+  align-items: center
+  flex-direction: column
+  gap: var(--space4)
+  text-align: center
+
+  p
+    max-width: var(--login-form)
+    color: var(--muted-foreground)
+
+.empty-icon, .form-icon, .review-icon
+  display: flex
+  width: var(--space9)
+  height: var(--space9)
+  align-items: center
+  justify-content: center
+  color: var(--primary)
+  background: var(--accent)
+  border-radius: var(--radius) var(--radius) var(--radius) var(--radius)
+
+.list-note, .form-help, .chat-assurance
+  display: flex
+  margin: var(--space4) 0 0 0
+  align-items: center
+  gap: var(--space2)
+  font-size: var(--f1)
+  color: var(--muted-foreground)
+
+  svg
+    min-width: var(--icon)
+
+.table-scroll
+  width: 100%
+  overflow-x: auto
+
+  table
+    width: 100%
+    text-align: left
+    border-collapse: collapse
+
+  th, td
+    padding: var(--space4) var(--space6) var(--space4) var(--space6)
+    font-size: var(--f2)
+    white-space: nowrap
+    border-bottom: var(--line) solid var(--border)
+
+  th
+    color: var(--muted-foreground)
+    background: var(--muted)
+
+  tbody tr:last-child td
+    border-bottom: 0
+
+.record-name, .record-id
+  display: block
+
+.record-id
+  margin: var(--space1) 0 0 0
+  font-family: var(--font-utility)
+  font-size: var(--f0)
+  color: var(--muted-foreground)
+
+.record-actions
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  gap: var(--space2)
+
+.trash-note
+  margin: 0 0 var(--space5) 0
+
+  ~ .list-card + .list-card
+    margin: var(--space5) 0 0 0
+
+.active
+  color: var(--success)
+  background: var(--success-soft)
+
+.form-header
+  display: flex
+  padding: var(--space6) var(--space6) var(--space6) var(--space6)
+  align-items: center
+  gap: var(--space3)
+  border-bottom: var(--line) solid var(--border)
+
+  h2
+    font-size: var(--f4)
+
+  p
+    margin: var(--space1) 0 0 0
+    font-size: var(--f2)
+    color: var(--muted-foreground)
+
+  > :last-child
+    margin: 0 0 0 auto
+
+.form-body
+  display: flex
+  padding: var(--space6) var(--space6) var(--space6) var(--space6)
+  flex-direction: column
+  gap: var(--space5)
+
+.campo
+  display: flex
+  width: 100%
+  min-width: 0
+  flex-direction: column
+  gap: var(--space2)
+
+  label
+    display: flex
+    justify-content: space-between
+    font-size: var(--f2)
+
+  input, select
+    width: 100%
+    min-width: 0
+    height: var(--field)
+    padding: var(--space3) var(--space3) var(--space3) var(--space3)
+    font-size: var(--f3)
+    background: var(--card)
+    border: var(--line) solid var(--input)
+    border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) var(--radius-sm)
+
+  [aria-invalid='true']
+    border-color: var(--destructive)
+
+.form-row
+  display: flex
+  gap: var(--space4)
+
+  .campo
+    width: calc(50% - var(--space2))
+
+.form-footer
+  display: flex
+  padding: var(--space5) var(--space6) var(--space5) var(--space6)
+  justify-content: space-between
+  gap: var(--space3)
+  border-top: var(--line) solid var(--border)
+
+.form-notice, .workspace-warning, .error, .chat-error, .chat-notice
+  padding: var(--space3) var(--space4) var(--space3) var(--space4)
+  font-size: var(--f2)
+  color: var(--destructive)
+  background: var(--danger-soft)
+  border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) var(--radius-sm)
+
+.form-notice
+  display: flex
+  gap: var(--space3)
+  color: var(--secondary-foreground)
+  background: var(--secondary)
+
+  a
+    text-decoration: underline
+
+.field-error
+  font-size: var(--f1)
+  color: var(--destructive)
+
+.loading-state
+  padding: var(--space7) var(--space6) var(--space7) var(--space6)
+  color: var(--muted-foreground)
+
+section.assistant
+  display: flex
+  height: 100%
+  min-height: 0
+  flex-direction: column
+
+  > :not(.conversation)
+    min-height: max-content
+
+.assistant-header
+  display: flex
+  padding: var(--space4) var(--space4) var(--space4) var(--space4)
+  align-items: center
+  justify-content: space-between
+  gap: var(--space2)
+  border-bottom: var(--line) solid var(--border)
+
+.assistant-controls
+  display: flex
+  align-items: center
+  gap: var(--space1)
+
+.assistant-identity
+  display: flex
+  align-items: center
+  gap: var(--space3)
+
+  h2
+    font-size: var(--f3)
+
+  p
+    margin: var(--space1) 0 0 0
+    font-size: var(--f0)
+    color: var(--muted-foreground)
+
+.assistant-avatar, .message-avatar
+  display: flex
+  width: var(--avatar)
+  height: var(--avatar)
+  align-items: center
+  justify-content: center
+  color: var(--primary)
+  background: var(--accent)
+  border-radius: var(--radius) var(--radius) var(--radius) var(--radius)
+
+.conversation
+  height: 100%
+  min-height: 0
+  padding: var(--space4) var(--space4) var(--space4) var(--space4)
+  overflow-y: auto
+  overscroll-behavior: contain
+
+.chat-welcome
+  display: flex
+  padding: var(--space4) 0 var(--space4) 0
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  gap: var(--space3)
+  text-align: center
+
+  > p
+    max-width: var(--login-form)
+    font-size: var(--f2)
+    color: var(--muted-foreground)
+
+  h2
+    font-size: var(--f6)
+
+.welcome-symbol
+  display: flex
+  width: var(--space10)
+  height: var(--space10)
+  margin: 0 0 var(--space2) 0
+  align-items: center
+  justify-content: center
+  color: var(--primary)
+  background: var(--accent)
+  border: var(--line) solid var(--border)
+  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) var(--radius-lg)
+
+  svg
+    width: var(--space6)
+    height: var(--space6)
+
+.suggestions
+  display: flex
+  width: 100%
+  margin: var(--space4) 0 0 0
+  flex-direction: column
+  gap: var(--space3)
+
+  button
+    display: flex
+    width: 100%
+    padding: var(--space3) var(--space3) var(--space3) var(--space3)
+    align-items: center
+    gap: var(--space3)
+    font-size: var(--f2)
+    text-align: left
+    background: var(--card)
+    border: var(--line) solid var(--border)
+    border-radius: var(--radius) var(--radius) var(--radius) var(--radius)
+
+    > svg
+      min-width: var(--icon)
+      color: var(--primary)
+
+    > svg:last-child
+      margin: 0 0 0 auto
+      color: var(--muted-foreground)
+
+    &:hover
+      background: var(--muted)
+      border-color: var(--input)
+
+  small
+    display: block
+    margin: var(--space1) 0 0 0
+    font-size: var(--f1)
+    color: var(--muted-foreground)
+
+.chat-assurance
+  justify-content: center
+
+.message
+  display: flex
+  margin: 0 0 var(--space4) 0
+  align-items: flex-start
+  gap: var(--space3)
+
+  > div
+    width: calc(100% - var(--avatar) - var(--space3))
+    min-width: 0
+
+  &.user .message-avatar
+    color: var(--muted-foreground)
+    background: var(--muted)
+
+.message-content
+  margin: var(--space2) 0 0 0
+  padding: var(--space4) var(--space4) var(--space4) var(--space4)
+  font-size: var(--f3)
+  line-height: 1.5
+  overflow-wrap: anywhere
+  white-space: pre-wrap
+  background: var(--muted)
+  border-radius: var(--radius) var(--radius) var(--radius) var(--radius)
+
+  p + p
+    margin: var(--space3) 0 0 0
+
+.message.user .message-content
+  background: var(--accent)
+
+.message-author
+  font-size: var(--f1)
+  color: var(--muted-foreground)
+
+.navigation-card
+  display: flex
+  margin: var(--space3) var(--space4) 0 var(--space4)
+  padding: var(--space3) var(--space3) var(--space3) var(--space3)
+  align-items: center
+  gap: var(--space2)
+  font-size: var(--f3)
+  color: var(--primary)
+  background: var(--accent)
+  border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) var(--radius-sm)
+
+.assistant-progress
+  display: flex
+  margin: 0 0 var(--space4) 0
+  align-items: center
+  gap: var(--space2)
+  font-size: var(--f2)
+  color: var(--primary)
+
+.composer
+  position: relative
+  margin: var(--space3) var(--space5) 0 var(--space5)
+  padding: var(--space3) var(--space3) var(--space3) var(--space3)
+  background: var(--card)
+  border: var(--line) solid var(--input)
+  border-radius: var(--radius) var(--radius) var(--radius) var(--radius)
+  box-shadow: var(--shadow)
+
+  &:focus-within
+    border-color: var(--primary)
+
+  textarea
+    display: block
+    width: 100%
+    min-height: var(--space9)
+    max-height: var(--space10)
+    padding: var(--space1) var(--space1) var(--space1) var(--space1)
+    font-size: var(--f3)
+    overflow-y: auto
+
+    &::placeholder
+      color: var(--muted-foreground)
+
+.composer-bottom
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: var(--space2)
+
+  > span
+    font-size: var(--f0)
+    color: var(--muted-foreground)
+
+.composer-actions
+  display: flex
+  padding: 0 0 0 0
+  align-items: center
+  gap: var(--space2)
+
+  &:has(> button[aria-label='Enviar mensagem'])
+    padding: 0 0 0 calc(var(--touch) + var(--space2))
+
+  > button
+    min-width: var(--touch)
+    min-height: var(--touch)
+
+.composer-count
+  width: var(--space10)
+  margin: 0 0 0 0
+  font-size: var(--f1)
+  color: var(--muted-foreground)
+  text-align: right
+
+.dictation-control
+  min-width: 0
+
+.dictation-button
+  position: absolute
+  right: calc(var(--space3) + var(--touch) + var(--space2))
+  bottom: var(--space3)
+  width: var(--touch)
+  min-width: var(--touch)
+  height: var(--touch)
+  min-height: var(--touch)
+  touch-action: none
+  user-select: none
+
+  &[aria-pressed='true']
+    color: var(--primary)
+    background: var(--accent)
+
+.dictation-card
+  display: flex
+  position: absolute
+  right: var(--space3)
+  bottom: calc(100% + var(--space2))
+  left: var(--space3)
+  z-index: 1
+  min-width: 0
+  margin: 0 0 0 0
+  padding: var(--space2) var(--space2) var(--space2) var(--space3)
+  align-items: center
+  flex-wrap: wrap
+  gap: var(--space2)
+  color: var(--primary)
+  background: var(--accent)
+  border: var(--line) solid var(--border)
+  border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) var(--radius-sm)
+  box-shadow: var(--shadow)
+
+  button
+    min-width: var(--touch)
+    min-height: var(--touch)
+
+  > button
+    margin: 0 0 0 auto
+
+.dictation-meter
+  display: flex
+  width: var(--space9)
+  min-width: var(--space9)
+  height: var(--space7)
+  align-items: center
+  justify-content: center
+  gap: var(--space1)
+
+  span
+    display: block
+    width: var(--space1)
+    height: calc(var(--space1) + var(--space6) * clamp(0, var(--level, 0), 1))
+    background: var(--primary)
+    border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) var(--radius-sm)
+
+.dictation-status
+  display: flex
+  min-width: 0
+  align-items: center
+  gap: var(--space2)
+  font-size: var(--f3)
+  overflow-wrap: anywhere
+
+.dictation-actions
+  display: flex
+  margin: 0 0 0 auto
+  align-items: center
+  gap: var(--space2)
+
+.dictation-feedback
+  margin: var(--space2) 0 var(--space2) 0
+  font-size: var(--f1)
+  color: var(--muted-foreground)
+  overflow-wrap: anywhere
+
+  &[role='alert']
+    color: var(--destructive)
+
+.composer-bottom > #composer-help
+  width: calc(100% - var(--touch) * 3 - var(--space10) - var(--space4))
+  max-width: none
+  overflow-wrap: anywhere
+
+.composer-bottom:has(.composer-actions > button[aria-label='Enviar mensagem']) > #composer-help
+  width: calc(100% - var(--touch) * 2 - var(--space2) * 3 - var(--space10))
+
+.dictation-notice
+  width: 100%
+  margin: var(--space2) 0 var(--space2) 0
+  font-size: var(--f1)
+  color: var(--muted-foreground)
+  line-height: 1.5
+  overflow-wrap: anywhere
+
+  &[role='alert']
+    color: var(--destructive)
+
+.assistant-footer
+  padding: var(--space3) var(--space5) var(--space4) var(--space5)
+  font-size: var(--f0)
+  color: var(--muted-foreground)
+  text-align: center
+
+  p
+    margin: var(--space1) 0 0 0
+
+.draft-indicator
+  display: flex
+  margin: 0 var(--space5) 0 var(--space5)
+  padding: var(--space3) var(--space3) var(--space3) var(--space3)
+  align-items: center
+  gap: var(--space2)
+  font-size: var(--f1)
+  color: var(--secondary-foreground)
+  background: var(--secondary)
+  border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) var(--radius-sm)
+
+  a
+    margin: 0 0 0 auto
+    text-decoration: underline
+
+.chat-error, .chat-notice
+  margin: var(--space3) var(--space5) 0 var(--space5)
+
+.review-card
+  margin: var(--space4) 0 var(--space4) 0
+  padding: var(--space4) var(--space4) var(--space4) var(--space4)
+  background: var(--card)
+  border: var(--line) solid var(--primary)
+  border-radius: var(--radius) var(--radius) var(--radius) var(--radius)
+
+  > header
+    display: flex
+    margin: 0 0 var(--space4) 0
+    align-items: center
+    gap: var(--space2)
+
+    h3
+      font-size: var(--f3)
+
+    .review-icon
+      width: var(--avatar)
+      height: var(--avatar)
+
+  > p
+    margin: 0 0 var(--space3) 0
+    font-size: var(--f3)
+    color: var(--muted-foreground)
+
+  .eyebrow
+    margin: 0 0 var(--space1) 0
+
+.review-fields
+  margin: var(--space3) 0 var(--space3) 0
+
+  > div
+    display: flex
+    padding: var(--space2) 0 var(--space2) 0
+    justify-content: space-between
+    gap: var(--space3)
+    font-size: var(--f3)
+    border-bottom: var(--line) solid var(--border)
+
+  dt
+    color: var(--muted-foreground)
+
+  dd
+    max-width: 70%
+    overflow-wrap: anywhere
+    text-align: right
+
+.review-actions
+  display: flex
+  margin: 0 0 var(--space3) 0
+  flex-wrap: wrap
+  gap: var(--space2)
+
+.batch-card
+  min-width: 0
+  overflow-wrap: anywhere
+
+  > header p
+    margin: var(--space1) 0 0 0
+    font-size: var(--f3)
+    color: var(--muted-foreground)
+
+.batch-items
+  display: flex
+  min-width: 0
+  margin: var(--space4) 0 var(--space4) 0
+  flex-direction: column
+  gap: var(--space3)
+
+.batch-item
+  min-width: 0
+  padding: var(--space3) var(--space3) var(--space3) var(--space3)
+  background: var(--muted)
+  border: var(--line) solid var(--border)
+  border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) var(--radius-sm)
+
+  h4
+    font-family: var(--font-display)
+    font-size: var(--f3)
+    color: var(--primary)
+
+  .review-fields
+    margin: var(--space2) 0 0 0
+
+    > div:last-child
+      border-bottom: 0
+
+.batch-issues
+  margin: 0 0 var(--space4) 0
+  padding: var(--space3) var(--space3) var(--space3) var(--space3)
+  font-size: var(--f3)
+  color: var(--destructive)
+  background: var(--danger-soft)
+  border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) var(--radius-sm)
+
+  h4
+    font-family: var(--font-display)
+
+  ul
+    margin: var(--space2) 0 var(--space2) 0
+    padding: 0 0 0 var(--space5)
+    list-style: disc
+
+  li + li
+    margin: var(--space1) 0 0 0
+
+.mutation-records
+  display: flex
+  margin: var(--space4) 0 var(--space4) 0
+  padding: var(--space3) var(--space4) var(--space3) var(--space4)
+  flex-direction: column
+  gap: var(--space2)
+  font-size: var(--f2)
+  overflow-wrap: anywhere
+  background: var(--muted)
+  border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) var(--radius-sm)
+
+  small
+    font-family: var(--font-utility)
+    font-size: var(--f0)
+    color: var(--muted-foreground)
+
+.assistant-popover
+  .assistant-header
+    min-height: calc(var(--space10) + var(--space1))
+    padding: var(--space3) var(--space4) var(--space3) var(--space5)
+    border-bottom: 0
+
+  .assistant-identity
+    gap: var(--space2)
+
+    > svg
+      width: var(--space6)
+      height: var(--space6)
+      color: var(--chat-green)
+
+    h2
+      font-size: var(--chat-title)
+      color: var(--chat-ink)
+
+    .assistant-brand
+      font-size: var(--f0)
+      color: var(--chat-muted)
+
+  .assistant-controls button
+    width: var(--touch)
+    height: var(--touch)
+    color: var(--chat-muted)
+    border-radius: 50% 50% 50% 50%
+
+  .conversation
+    padding: 0 var(--space2) var(--space2) var(--space2)
+
+  .chat-welcome
+    min-height: 100%
+    padding: var(--space7) var(--space2) 0 var(--space2)
+    justify-content: flex-start
+    gap: 0
+    background: radial-gradient(ellipse at 50% 25%, var(--chat-halo), var(--transparent) 57%)
+
+    > h2
+      max-width: calc(var(--space9) * 6)
+      margin: var(--space7) 0 0 0
+      font-size: var(--chat-title)
+      color: var(--chat-muted)
+      line-height: 1.4
+
+  .assistant-orb
+    display: flex
+    position: relative
+    width: var(--chat-orb)
+    min-width: var(--chat-orb)
+    height: var(--chat-orb)
+    min-height: var(--chat-orb)
+    align-items: center
+    justify-content: center
+    isolation: isolate
+
+    > svg
+      position: absolute
+      width: calc(var(--chat-orb) * 1.18421)
+      height: calc(var(--chat-orb) * 1.18421)
+      overflow: visible
+
+    .orb-mist, .orb-core, .orb-highlight, .orb-caustic
+      transform-box: fill-box
+      transform-origin: center
+      animation-play-state: paused
+
+    &.orb-active
+      .orb-mist, .orb-core, .orb-highlight, .orb-caustic
+        animation-play-state: running
+
+    &[data-active='false']
+      .orb-mist, .orb-core, .orb-highlight, .orb-caustic
+        animation-play-state: paused
+
+  .suggestions
+    width: 100%
+    margin: var(--space9) 0 0 0
+    align-items: flex-end
+    gap: var(--space3)
+
+    button
+      width: fit-content
+      max-width: 100%
+      min-height: var(--touch)
+      padding: var(--space3) var(--space5) var(--space3) var(--space5)
+      justify-content: center
+      font-size: var(--f4)
+      color: var(--chat-ink)
+      line-height: 1.4
+      background: var(--chat-white)
+      border: 0
+      border-radius: var(--space3) var(--space3) var(--space3) var(--space3)
+      box-shadow: var(--chat-chip-shadow)
+
+      &:hover
+        background: var(--chat-band)
+
+  .suggestions .suggestions-more
+    min-height: var(--touch)
+    margin: var(--space2) 0 0 auto
+    padding: var(--space2) var(--space4) var(--space2) var(--space4)
+    font-size: var(--f4)
+    color: var(--chat-muted)
+    background: var(--transparent)
+    box-shadow: none
+
+    &:hover
+      background: var(--transparent)
+      color: var(--chat-ink)
+
+  .assistant-topics
+    padding: var(--space3) var(--space4) var(--space3) var(--space4)
+
+    .suggestions
+      margin: 0 0 0 0
+
+  .composer
+    margin: var(--space2) var(--space1) var(--space1) var(--space1)
+    padding: 0 0 0 0
+    overflow: visible
+    background: var(--chat-white)
+    border: 0
+    border-radius: var(--space5) var(--space5) var(--space5) var(--space5)
+    box-shadow: var(--chat-chip-shadow)
+
+    &:focus-within
+      box-shadow: 0 0 0 calc(var(--line) * 2) var(--chat-green)
+
+    textarea
+      height: var(--chat-composer-input)
+      min-height: var(--chat-composer-input)
+      max-height: calc(var(--chat-composer-input) * 2)
+      padding: var(--space4) var(--space5) var(--space3) var(--space5)
+      font-size: var(--f4)
+      border-radius: var(--space5) var(--space5) 0 0
+
+      &:focus-visible
+        outline: none
+
+  .composer-bottom
+    min-height: var(--chat-toolbar)
+    padding: var(--space1) var(--space3) var(--space1) var(--space3)
+    background: var(--chat-band)
+    border-radius: 0 0 var(--space5) var(--space5)
+
+  .assistant-topics-toggle
+    min-height: var(--touch)
+    padding: var(--space2) var(--space2) var(--space2) var(--space2)
+    gap: var(--space2)
+    font-size: var(--f3)
+    color: var(--chat-ink)
+
+    svg
+      color: var(--chat-green)
+
+  .composer-actions > button
+    width: var(--touch)
+    height: var(--touch)
+    color: var(--chat-ink)
+    background: var(--transparent)
+    border-radius: 50% 50% 50% 50%
+
+    &:disabled
+      color: var(--chat-muted)
+      opacity: .5
+
+    &:not([aria-label='Enviar mensagem'])
+      width: fit-content
+      padding: var(--space2) var(--space3) var(--space2) var(--space3)
+
+  .dictation-button
+    right: calc(var(--space3) + var(--touch) + var(--space2))
+    bottom: calc((var(--chat-toolbar) - var(--touch)) / 2)
+    color: var(--chat-ink)
+
+  .dictation-feedback
+    margin: 0 0 0 0
+    padding: var(--space1) var(--space5) 0 var(--space5)
+
+  .composer-details
+    margin: 0 var(--space4) var(--space2) var(--space4)
+    font-size: var(--f0)
+    color: var(--chat-muted)
+    overflow-wrap: anywhere
+
+    > summary
+      display: flex
+      width: 100%
+      min-height: var(--space6)
+      align-items: center
+      justify-content: space-between
+      gap: var(--space2)
+      cursor: pointer
+
+    p
+      margin: var(--space1) 0 0 0
+
+  .message-content, .review-card, .batch-item, .mutation-records
+    border-color: var(--chat-line)
+
+  .message-avatar, .review-icon
+    color: var(--chat-ink)
+    background: var(--chat-halo)
+
+  .message-content
+    background: var(--chat-white)
+
+  .message.user .message-content, .draft-indicator, .navigation-card
+    color: var(--chat-ink)
+    background: var(--chat-halo)
+
+  .review-actions button
+    min-height: var(--touch)
+
+.model-settings
+  display: flex
+  min-width: 0
+  flex-direction: column
+  gap: var(--space3)
+
+  .page-header
+    margin: 0 0 0 0
+
+    h1
+      margin: 0 0 0 0
+      font-size: var(--f6)
+
+  .list-header
+    padding: var(--space2) var(--space4) var(--space2) var(--space4)
+    flex-wrap: wrap
+    gap: var(--space2)
+
+    > div:first-child:not(.model-targets)
+      display: flex
+      align-items: center
+      flex-wrap: wrap
+      gap: var(--space2)
+      font-size: var(--f1)
+      color: var(--muted-foreground)
+
+    .model-settings-actions
+      padding: 0 0 0 0
+
+  .list-card > p
+    margin: 0 0 0 0
+    padding: var(--space1) var(--space4) var(--space1) var(--space4)
+    font-size: var(--f1)
+    overflow-wrap: anywhere
+
+  button
+    min-height: var(--avatar)
+
+  code
+    display: block
+    min-width: 0
+    font-family: var(--font-utility)
+    font-size: var(--f1)
+    color: var(--muted-foreground)
+    overflow-wrap: anywhere
+
+  .model-heading
+    display: flex
+    min-width: 0
+    align-items: center
+    flex-wrap: wrap
+    gap: var(--space2)
+
+    > p
+      font-size: var(--f1)
+      color: var(--muted-foreground)
+
+    strong
+      font-size: var(--f3)
+      overflow-wrap: anywhere
+
+  .model-selection
+    display: flex
+    min-width: 0
+    padding: var(--space2) var(--space4) var(--space2) var(--space4)
+    gap: var(--space4)
+
+    > article
+      width: calc(50% - var(--space2))
+      min-width: 0
+
+      + article
+        padding: 0 0 0 var(--space4)
+        border-left: var(--line) solid var(--border)
+
+      .small, .field-error
+        font-size: var(--f1)
+
+  .model-targets
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+    gap: var(--space1)
+
+    > span
+      font-size: var(--f1)
+      color: var(--muted-foreground)
+
+    button[aria-pressed='true']
+      color: var(--primary)
+      background: var(--accent)
+      border-color: var(--primary)
+
+  .model-toolbar
+    display: flex
+    min-width: 0
+    padding: var(--space2) var(--space4) var(--space2) var(--space4)
+    align-items: flex-end
+    gap: var(--space3)
+
+    .campo
+      gap: var(--space1)
+
+    label
+      font-size: var(--f1)
+
+    input, select
+      min-width: 0
+      height: var(--avatar)
+      padding: var(--space2) var(--space3) var(--space2) var(--space3)
+      font-size: var(--f3)
+
+  .model-search
+    width: 50%
+
+  .model-compatibility
+    width: 30%
+
+  .model-filters
+    width: 20%
+
+  .model-simulation
+    display: flex
+    min-width: 0
+    padding: var(--space2) var(--space4) var(--space2) var(--space4)
+    align-items: flex-end
+    gap: var(--space3)
+    background: var(--muted)
+    border-top: var(--line) solid var(--border)
+
+    .campo
+      width: calc(var(--space10) * 2)
+      gap: var(--space1)
+
+      label
+        font-size: var(--f1)
+
+      input
+        height: var(--avatar)
+        padding: var(--space2) var(--space3) var(--space2) var(--space3)
+        font-size: var(--f3)
+
+  .model-exchange
+    min-width: 0
+    margin: 0 0 0 auto
+    font-size: var(--f1)
+    color: var(--muted-foreground)
+    overflow-wrap: anywhere
+
+    a
+      color: var(--primary)
+      text-decoration: underline
+
+  .model-results
+    min-height: calc(var(--space10) * 4)
+    border-top: var(--line) solid var(--border)
+
+  .model-row
+    display: flex
+    min-width: 0
+    min-height: var(--space10)
+    padding: var(--space2) var(--space4) var(--space2) var(--space4)
+    align-items: center
+    justify-content: space-between
+    gap: var(--space4)
+    border-bottom: var(--line) solid var(--border)
+
+    > button
+      width: fit-content
+      min-width: max-content
+
+    > .model-pricing
+      width: 32%
+
+  .model-identity
+    width: 50%
+    min-width: 0
+
+    > .small
+      font-size: var(--f1)
+
+  .model-cost
+    display: inline-flex
+    width: fit-content
+    padding: 0 var(--space2) 0 var(--space2)
+    font-size: var(--f1)
+    color: var(--muted-foreground)
+    background: var(--muted)
+    border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) var(--radius-sm)
+
+    &.free
+      color: var(--success)
+      background: var(--success-soft)
+
+  .model-pricing
+    display: flex
+    min-width: 0
+    align-items: center
+    flex-wrap: wrap
+    gap: var(--space2)
+    font-size: var(--f1)
+    color: var(--muted-foreground)
+    overflow-wrap: anywhere
+
+  .model-pagination
+    display: flex
+    padding: var(--space2) var(--space4) var(--space2) var(--space4)
+    align-items: center
+    justify-content: space-between
+    flex-wrap: wrap
+    gap: var(--space2)
+    font-size: var(--f1)
+    color: var(--muted-foreground)
+
+    > div
+      display: flex
+      gap: var(--space2)
+
+  .model-advanced
+    border-top: var(--line) solid var(--border)
+
+    > summary
+      padding: var(--space2) var(--space4) var(--space2) var(--space4)
+      font-size: var(--f1)
+      color: var(--muted-foreground)
+      cursor: pointer
+
+  .model-manual
+    display: flex
+    min-width: 0
+    padding: var(--space2) var(--space4) var(--space3) var(--space4)
+    align-items: flex-end
+    gap: var(--space3)
+
+    > button
+      min-width: max-content
+
+  .model-settings-actions
+    display: flex
+    padding: var(--space2) var(--space4) var(--space2) var(--space4)
+    align-items: center
+    flex-wrap: wrap
+    gap: var(--space2)
+
+    > p
+      width: 100%
+      font-size: var(--f1)
+      overflow-wrap: anywhere
+
+.model-info-trigger
+  display: inline-flex
+  width: var(--avatar)
+  min-width: var(--avatar)
+  height: var(--avatar)
+  padding: 0 0 0 0
+  align-items: center
+  justify-content: center
+  color: var(--muted-foreground)
+  background: var(--transparent)
+  border-radius: 50% 50% 50% 50%
+
+  &:hover, &[data-state='open']
+    color: var(--primary)
+    background: var(--accent)
+
+.model-info
+  z-index: calc(var(--chat-layer) + 1)
+  width: calc(var(--space10) * 5)
+  max-width: calc(100dvw - var(--space6))
+  max-height: var(--reka-popper-available-height, calc(100dvh - var(--space6)))
+  padding: var(--space4) var(--space4) var(--space4) var(--space4)
+  font-family: var(--font-body)
+  font-size: var(--f1)
+  color: var(--foreground)
+  line-height: 1.5
+  overflow-wrap: anywhere
+  overflow-y: auto
+  background: var(--popover)
+  border: var(--line) solid var(--border)
+  border-radius: var(--radius) var(--radius) var(--radius) var(--radius)
+  box-shadow: var(--shadow-popover)
+
+  > * + *
+    margin: var(--space3) 0 0 0
+
+  strong, h3
+    font-size: var(--f3)
+
+  code
+    font-family: var(--font-utility)
+    font-size: var(--f1)
+    color: var(--muted-foreground)
+    overflow-wrap: anywhere
+
+  dl
+    display: flex
+    flex-direction: column
+    gap: var(--space2)
+
+    > div
+      display: flex
+      justify-content: space-between
+      gap: var(--space3)
+
+    dt
+      color: var(--muted-foreground)
+
+    dd
+      max-width: 65%
+      text-align: right
+
+  a
+    color: var(--primary)
+    text-decoration: underline
+
+.login
+  display: flex
+  min-height: 100dvh
+
+.login-story
+  display: flex
+  width: 46%
+  padding: var(--space9) var(--space10) var(--space9) var(--space10)
+  justify-content: space-between
+  flex-direction: column
+  color: var(--primary-foreground)
+  background: var(--navy)
+
+  .brand, .eyebrow
+    color: var(--primary-foreground)
+
+  .brand-symbol
+    background: var(--primary-foreground)
+    color: var(--navy)
+
+  > div
+    padding: var(--space10) 0 var(--space10) 0
+
+    h1
+      margin: 0 0 var(--space6) 0
+      font-size: var(--f8)
+      line-height: 1.1
+
+    > p:last-child
+      max-width: var(--login-form)
+      font-size: var(--f5)
+      color: var(--story-text)
+      line-height: 1.75
+
+  .eyebrow
+    margin: 0 0 var(--space5) 0
+    color: var(--story-text)
+
+.login-note
+  display: flex
+  padding: var(--space5) 0 0 0
+  align-items: center
+  gap: var(--space3)
+  font-size: var(--f2)
+  color: var(--story-text)
+  border-top: var(--line) solid var(--story-line)
+
+.login-content
+  display: flex
+  width: 54%
+  padding: var(--space8) var(--space8) var(--space8) var(--space8)
+  align-items: center
+  justify-content: center
+  background: var(--card)
+
+.login-form
+  display: flex
+  width: 100%
+  max-width: var(--login-form)
+  flex-direction: column
+  gap: var(--space5)
+
+  > .eyebrow
+    margin: 0 0 0 0
+
+  h2
+    font-size: var(--f7)
+
+  > .muted:not(.small)
+    margin: calc(var(--space2) * -1) 0 var(--space3) 0
+
+  .login-submit
+    width: 100%
+    height: var(--field)
+    margin: var(--space2) 0 0 0
+    justify-content: space-between
+
+  > .small
+    text-align: center
+    line-height: 1.7
+
+@media screen and (max-width: 1000px)
+  .assistant-popover
+    --chat-orb: 6rem
+    --chat-radius: 1.5rem
+
+    .assistant-header
+      min-height: var(--space10)
+      padding: var(--space2) var(--space3) var(--space2) var(--space4)
+
+    .assistant-identity .assistant-brand
+      display: none
+
+    .chat-welcome
+      padding: var(--space3) var(--space1) 0 var(--space1)
+
+      > h2
+        margin: var(--space5) 0 0 0
+        font-size: var(--f5)
+        line-height: 1.5
+
+    .suggestions
+      margin: var(--space6) 0 0 0
+      gap: var(--space2)
+
+      button
+        padding: var(--space3) var(--space4) var(--space3) var(--space4)
+        font-size: var(--f3)
+
+    .suggestions .suggestions-more
+      font-size: var(--f3)
+
+    .composer textarea
+      height: auto
+      padding: var(--space4) var(--space4) var(--space3) var(--space4)
+
+    .composer-bottom
+      padding: var(--space1) var(--space2) var(--space1) var(--space2)
+
+    .dictation-button
+      right: calc(var(--space2) + var(--touch) + var(--space2))
+
+  .model-info-trigger
+    width: var(--touch)
+    min-width: var(--touch)
+    height: var(--touch)
+
+  .model-settings
+    .model-simulation
+      flex-wrap: wrap
+
+      .campo
+        width: calc(50% - var(--space3) / 2)
+
+        input
+          height: var(--touch)
+          font-size: var(--f4)
+
+    .model-exchange
+      width: 100%
+      margin: 0 0 0 0
+
+    .list-header .model-settings-actions
+      width: 100%
+
+    .list-card > p
+      padding: var(--space2) var(--space4) var(--space2) var(--space4)
+
+    button
+      min-height: var(--touch)
+
+    .model-selection
+      padding: var(--space3) var(--space4) var(--space3) var(--space4)
+      flex-direction: column
+      gap: var(--space3)
+
+      > article
+        width: 100%
+
+        + article
+          padding: var(--space3) 0 0 0
+          border-top: var(--line) solid var(--border)
+          border-left: 0
+
+    .model-toolbar
+      padding: var(--space3) var(--space4) var(--space3) var(--space4)
+      align-items: stretch
+      flex-direction: column
+
+      input, select
+        height: var(--touch)
+        font-size: var(--f4)
+
+    .model-search, .model-compatibility, .model-filters, .model-identity, .model-row > .model-pricing
+      width: 100%
+
+    .model-row
+      padding: var(--space3) var(--space4) var(--space3) var(--space4)
+      align-items: flex-start
+      flex-direction: column
+      gap: var(--space2)
+
+    .model-advanced > summary
+      min-height: var(--touch)
+      padding: var(--space3) var(--space4) var(--space3) var(--space4)
+
+    .model-manual
+      align-items: stretch
+      flex-direction: column
+
+    .model-settings-actions
+      padding: var(--space3) var(--space4) var(--space3) var(--space4)
+      flex-direction: column
+      gap: var(--space3)
+
+      > button
+        width: 100%
+
+  [data-slot='button'], .navigation a
+    min-width: var(--touch)
+    min-height: var(--touch)
+
+  .back-link, .draft-indicator a
+    display: inline-flex
+    min-height: var(--touch)
+    align-items: center
+
+  .campo input, .campo select, .composer textarea
+    font-size: var(--f4)
+
+  .workspace-shell
+    flex-direction: column
+
+  .sidebar
+    position: static
+    width: 100%
+    padding: var(--space4) var(--space4) var(--space3) var(--space4)
+    border-right: 0
+    border-bottom: var(--line) solid var(--border)
+
+    .brand
+      font-size: var(--f5)
+
+  .navigation-label, .sidebar-bottom .local-note
+    display: none
+
+  .navigation
+    margin: var(--space4) 0 0 0
+    flex-direction: row
+    flex-wrap: wrap
+    gap: var(--space2)
+
+    a
+      width: calc(50% - var(--space1))
+      min-height: var(--touch)
+      padding: var(--space2) var(--space2) var(--space2) var(--space2)
+      justify-content: center
+      gap: var(--space2)
+      font-size: var(--f2)
+
+    .navigation-arrow, .navigation-count
+      display: none
+
+  .sidebar-bottom
+    position: absolute
+    top: var(--space4)
+    right: var(--space4)
+
+  .profile
+    padding: 0 0 0 0
+
+    > span
+      display: none
+
+  .workspace-body
+    width: 100%
+    margin: 0 0 0 0
+
+  .workspace-topbar
+    min-height: var(--space10)
+    padding: var(--space3) var(--space4) var(--space3) var(--space4)
+
+    .local-indicator
+      display: none
+
+    .chat-toggle
+      display: inline-flex
+
+  .workspace-content
+    min-height: 0
+    flex-direction: column
+
+  .page-content
+    width: 100%
+    padding: var(--space6) var(--space4) var(--space6) var(--space4)
+
+  .assistant-popover
+    right: max(var(--space3), env(safe-area-inset-right))
+    bottom: max(var(--space3), env(safe-area-inset-bottom))
+    width: calc(100% - var(--space6))
+    max-width: var(--chat)
+    max-height: calc(100dvh - var(--space6) - env(safe-area-inset-top) - env(safe-area-inset-bottom))
+
+  .chat-launcher
+    right: max(var(--space3), env(safe-area-inset-right))
+    bottom: max(var(--space3), env(safe-area-inset-bottom))
+
+  .page-navigation
+    padding: var(--space6) var(--space4) var(--space6) var(--space4)
+
+  .review-actions button
+    min-height: var(--touch)
+
+  .workspace-footer
+    padding: var(--space3) var(--space4) var(--space3) var(--space4)
+    flex-wrap: wrap
+
+  .page-header
+    align-items: flex-start
+    flex-direction: column
+    gap: var(--space4)
+
+    h1
+      font-size: var(--f6)
+
+  .list-header
+    padding: var(--space4) var(--space4) var(--space4) var(--space4)
+    flex-wrap: wrap
+
+  .empty-state
+    padding: var(--space8) var(--space4) var(--space8) var(--space4)
+
+  .form-header, .form-body
+    padding: var(--space5) var(--space4) var(--space5) var(--space4)
+
+  .form-header
+    flex-wrap: wrap
+
+    .form-icon
+      display: none
+
+  .form-row
+    flex-direction: column
+
+    .campo
+      width: 100%
+
+  .form-footer
+    padding: var(--space4) var(--space4) var(--space4) var(--space4)
+    align-items: stretch
+    flex-direction: column-reverse
+
+  .assistant-header
+    padding: var(--space4) var(--space4) var(--space4) var(--space4)
+
+  .conversation
+    padding: var(--space4) var(--space4) var(--space4) var(--space4)
+
+  .assistant-identity p
+    max-width: calc(var(--sidebar) - var(--space10))
+
+  .composer-bottom > span
+    max-width: 65%
+
+  .login
+    flex-direction: column
+
+  .login-story
+    width: 100%
+    padding: var(--space6) var(--space6) var(--space6) var(--space6)
+
+    > div
+      padding: var(--space7) 0 0 0
+
+      h1
+        margin: 0 0 var(--space4) 0
+        font-size: var(--f7)
+
+      > p:last-child
+        max-width: none
+        font-size: var(--f3)
+
+    .eyebrow, .login-note
+      display: none
+
+  .login-content
+    width: 100%
+    padding: var(--space8) var(--space6) var(--space8) var(--space6)
+
+  .login-form h2
+    font-size: var(--f6)

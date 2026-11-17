@@ -1,0 +1,62 @@
+{
+  "gravadoEm": "2026-11-17T03:02:09.508Z",
+  "modelo": "baidu/ernie-5.5-flash-preview:free",
+  "inferenciaReal": true,
+  "respostasSimuladas": false,
+  "contextoIsolado": true,
+  "duracaoSegundos": 59.04,
+  "audio": false,
+  "legendasIncorporadas": true,
+  "capitulos": [
+    {
+      "at": 0.899,
+      "text": "01 · Assistente local: conversa limpa e dados fictícios"
+    },
+    {
+      "at": 5.019,
+      "text": "02 · Pedido em linguagem natural: cliente e contrato no mesmo lote"
+    },
+    {
+      "at": 11.626,
+      "text": "03 · Revisão humana: nada foi salvo antes da confirmação"
+    },
+    {
+      "at": 24.434,
+      "text": "04 · Edição por formulário: o cadastro também funciona sem IA"
+    },
+    {
+      "at": 32.292,
+      "text": "05 · Exclusão com impacto: cliente e contrato serão movidos juntos"
+    },
+    {
+      "at": 41.073,
+      "text": "06 · Restauração: os vínculos do lote são recuperados com confirmação"
+    },
+    {
+      "at": 47.991,
+      "text": "07 · Catálogo real: modelos, compatibilidade e estimativa de custos"
+    },
+    {
+      "at": 52.68,
+      "text": "08 · Dados no navegador; inferência remota via Genkit e OpenRouter"
+    }
+  ],
+  "turnos": [
+    {
+      "seconds": 2.458,
+      "model": "baidu/ernie-5.5-flash-preview:free",
+      "httpStatus": 200
+    }
+  ],
+  "verificacoes": [
+    "empty storage",
+    "no write before confirmation",
+    "linked atomic batch",
+    "edit",
+    "cascade delete",
+    "restore",
+    "reload persistence",
+    "no browser errors"
+  ],
+  "observacao": "O vídeo mostra uma execução bem-sucedida. Não mede taxa de sucesso, economia de tempo nem qualidade geral do modelo. Login realizado antes da captura."
+}

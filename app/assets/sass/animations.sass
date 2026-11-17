@@ -1,0 +1,47 @@
+.chat-transition-enter-active, .chat-transition-leave-active, .page-transition-enter-active, .page-transition-leave-active
+  transition: opacity var(--motion-duration) ease, transform var(--motion-duration) ease
+
+.chat-transition-enter-from, .chat-transition-leave-to, .page-transition-enter-from, .page-transition-leave-to
+  opacity: 0
+  transform: translateY(var(--motion-offset))
+
+@keyframes orbDrift
+  0%, 100%
+    opacity: .8
+    transform: translate(-3%, 2%) rotate(-8deg) scale(.96)
+  50%
+    opacity: 1
+    transform: translate(4%, -3%) rotate(12deg) scale(1.06)
+
+@keyframes orbShine
+  0%, 100%
+    opacity: .65
+    transform: translate(2%, -2%) rotate(4deg) scale(1)
+  50%
+    opacity: .95
+    transform: translate(-4%, 3%) rotate(-10deg) scale(1.08)
+
+.assistant-orb
+  .orb-mist
+    animation: orbDrift 11s ease-in-out infinite
+
+  .orb-core
+    animation: orbDrift 8s ease-in-out infinite reverse
+
+  .orb-highlight
+    animation: orbShine 9s ease-in-out infinite
+
+  .orb-caustic
+    animation: orbShine 13s ease-in-out infinite reverse
+
+@media (prefers-reduced-motion: reduce)
+  :root
+    --motion-duration: 0ms
+    --motion-offset: 0rem
+
+  .assistant-popover, .assistant-popover *
+    animation: none
+    transition: none
+
+  .assistant-popover .assistant-orb .orb-mist, .assistant-popover .assistant-orb .orb-core, .assistant-popover .assistant-orb .orb-highlight, .assistant-popover .assistant-orb .orb-caustic
+    animation: none
