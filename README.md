@@ -1,10 +1,22 @@
 # Assistente local com Genkit
 
-Aplicação experimental de **Daniel Kyochi** para transformar pedidos em linguagem natural em ações visíveis sobre clientes e contratos. O assistente navega, preenche formulários, identifica pendências e prepara cadastros em lote. A pessoa revisa os valores e confirma a gravação.
+Aplicação experimental de **Daniel Kyochi**, desenvolvida para **testes de implementação e fins acadêmicos**, como projeto pessoal de estudo e portfólio. Explora como transformar pedidos em linguagem natural em ações visíveis sobre clientes e contratos. O assistente navega, preenche formulários, identifica pendências e prepara cadastros em lote. A pessoa revisa os valores e confirma a gravação.
 
-O projeto explora agentes com ferramentas e automação de tarefas administrativas usando **Nuxt, Vue, TypeScript, Genkit e OpenRouter**. Foi desenvolvido como projeto pessoal de estudo e portfólio. A interface mantém o nome **Nexo**.
+O projeto explora agentes com ferramentas e automação de tarefas administrativas usando **Nuxt, Vue, TypeScript, Genkit e OpenRouter**. A interface mantém o nome **Nexo**.
 
 > Executa em localhost, para uma pessoa e uma aba ativa, com dados fictícios. Os cadastros ficam no navegador. A inferência de IA usa um serviço remoto; o modelo não roda localmente.
+
+## Escopo acadêmico e possibilidades de evolução
+
+Esta versão mantém o escopo reduzido para testar a integração entre interface, ferramentas de IA, validação e confirmação humana. Não é um sistema de produção nem uma solução multiusuário pronta.
+
+A abordagem pode ser adaptada para uma aplicação mais completa, com banco de dados no servidor, fluxos guiados por etapas, aprovações e funcionalidades por cargo. Essas evoluções exigem controles adicionais; **banco de dados e permissões por cargo não estão implementados neste protótipo**.
+
+Por exemplo, um atendente poderia consultar e cadastrar clientes, enquanto apenas um responsável autorizado poderia editar determinados dados, mover registros para a lixeira ou restaurá-los. Em uma versão multiusuário, as permissões devem ser verificadas no servidor em cada operação, considerando a ação e o registro acessado. Ocultar botões ou pedir confirmação não substitui essa autorização. O assistente deve respeitar as mesmas permissões da pessoa, sem ganhar acesso adicional por usar IA.
+
+O acesso ao banco também deve seguir o princípio do menor privilégio: a conta usada pela aplicação não deve ter permissão para apagar o banco ou alterar sua estrutura quando isso não fizer parte de sua função. As ferramentas do modelo devem continuar limitadas às operações previstas, sem execução arbitrária de SQL ou comandos administrativos.
+
+**O soft delete já existe nesta versão:** clientes e contratos são movidos para uma lixeira com revisão do impacto e possibilidade de restauração. Isso reduz o risco de exclusões acidentais, mas não elimina todos os riscos nem substitui autorização, registros de auditoria, backups e testes de recuperação. Esses controles adicionais seriam necessários ao evoluir para dados reais e uso compartilhado.
 
 ## O problema que resolve
 
