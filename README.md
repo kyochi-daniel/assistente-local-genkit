@@ -1,8 +1,12 @@
-# Assistente local com Genkit
+# Agente de IA para operações em sistemas
 
-Aplicação experimental de **Daniel Kyochi**, desenvolvida para **testes de implementação e fins acadêmicos**, como projeto pessoal de estudo e portfólio. Explora como transformar pedidos em linguagem natural em ações visíveis sobre clientes e contratos. O assistente navega, preenche formulários, identifica pendências e prepara cadastros em lote. A pessoa revisa os valores e confirma a gravação.
+Projeto experimental de **Daniel Kyochi**, desenvolvido para **testes de implementação e fins acadêmicos**. Demonstra como integrar um agente de IA a uma aplicação para transformar pedidos em linguagem natural em operações do sistema, com validação e confirmação humana antes de gravar alterações.
 
-O projeto explora agentes com ferramentas e automação de tarefas administrativas usando **Nuxt, Vue, TypeScript, Genkit e OpenRouter**. A interface mantém o nome **Nexo**.
+O objetivo é reduzir a navegação entre telas e o preenchimento repetitivo: a pessoa descreve o que precisa, o agente usa as ferramentas disponíveis para preparar a operação e a aplicação executa o que foi revisado e confirmado. **Clientes e contratos são o exemplo funcional desta implementação, não o limite da abordagem.**
+
+Outros processos podem ser integrados ao disponibilizar novas ferramentas e regras de negócio, como preparar solicitações internas ou atualizar registros de outro módulo. O agente só pode usar as capacidades que foram implementadas e disponibilizadas a ele; não ganha acesso irrestrito ao sistema, não cria funcionalidades sozinho e não altera o código da aplicação.
+
+A implementação usa **Nuxt, Vue, TypeScript, Genkit e OpenRouter**. Neste exemplo, o agente navega, preenche formulários, identifica pendências e prepara cadastros em lote. A interface mantém o nome **Nexo**.
 
 > Executa em localhost, para uma pessoa e uma aba ativa, com dados fictícios. Os cadastros ficam no navegador. A inferência de IA usa um serviço remoto; o modelo não roda localmente.
 
@@ -20,7 +24,7 @@ O acesso ao banco também deve seguir o princípio do menor privilégio: a conta
 
 ## O problema que resolve
 
-Cadastrar um cliente e criar seu contrato costuma exigir alternar entre telas, copiar informações e preencher vários campos. Aqui, um pedido reúne essas etapas:
+Operar um sistema costuma exigir conhecer menus, alternar entre telas e repetir dados em formulários. Este projeto demonstra uma interface conversacional sobre operações de negócio, preservando as validações e a decisão humana. No exemplo implementado, cadastrar um cliente e criar seu contrato pode começar com um único pedido:
 
 > “Cadastre Ana Demo, ana@example.com, e crie para ela um contrato de Consultoria no valor de R$ 1.500, com início em 2026-12-01.”
 
